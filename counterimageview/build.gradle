@@ -31,6 +31,10 @@ android {
 
 dependencies {
 
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'jp.wasabeef:picasso-transformations:2.4.0'
+    implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
+
     implementation 'androidx.appcompat:appcompat:1.4.1'
     implementation 'com.google.android.material:material:1.5.0'
     testImplementation 'junit:junit:4.13.2'
