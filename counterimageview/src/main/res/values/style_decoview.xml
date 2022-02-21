@@ -19,7 +19,7 @@
     </declare-styleable>
 
     <style name="DecoViewStyle">
-        <item name="dv_lineWidth">10dp</item>
+        <item name="dv_lineWidth">15dp</item>
         <item name="dv_rotateAngle">0</item>
         <item name="dv_totalAngle">360</item>
         <item name="dv_arc_gravity_horizontal">Center</item>

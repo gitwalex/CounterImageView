@@ -9,11 +9,6 @@
 
     <style name="CounterImageViewStyle" parent="DecoViewStyle">
         <item name="imagePadding">30dp</item>
-        <item name="dv_lineWidth">10dp</item>
-        <item name="dv_rotateAngle">0</item>
-        <item name="dv_totalAngle">360</item>
-        <item name="dv_arc_gravity_horizontal">Center</item>
-        <item name="dv_arc_gravity_vertical">Center</item>
     </style>
 
 

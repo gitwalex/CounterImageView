@@ -7,7 +7,6 @@
 
     <fragment
         android:id="@+id/FirstFragment"
-        android:name="com.gerwalex.counterimageview.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first"/>
+        android:name="com.gerwalex.counterimageview.CounterImageViewFirstFragment"
+        tools:layout="@layout/counter_image_view_fragment" />
 </navigation>

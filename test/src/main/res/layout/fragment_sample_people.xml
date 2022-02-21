@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/layout_replay" />
+
+    <com.gerwalex.counterimageview.DecoView
+        android:id="@+id/dynamicArcView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp">
+
+    </com.gerwalex.counterimageview.DecoView>
+
+    <ImageView
+        android:id="@+id/imageViewAvatar"
+        android:layout_width="175dp"
+        android:layout_height="175dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_avatar_group"
+        android:visibility="invisible" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignStart="@+id/dynamicArcView"
+        android:layout_alignLeft="@+id/dynamicArcView"
+        android:layout_alignParentBottom="true"
+        android:text="Avatars Designed by Freepik.com"
+        android:textAppearance="?android:attr/textAppearanceSmall" />
+
+</RelativeLayout>
