@@ -32,7 +32,6 @@ android {
 
 dependencies {
     implementation project(':counterimageview')
-    implementation 'com.github.bmarrdev:android-DecoView-charting:v0.9.3'
 
 
     implementation 'androidx.appcompat:appcompat:1.4.1'

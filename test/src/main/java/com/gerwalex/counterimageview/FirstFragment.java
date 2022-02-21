@@ -10,10 +10,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.gerwalex.counterimageview.charts.SeriesItem;
 import com.gerwalex.counterimageview.databinding.FragmentFirstBinding;
-import com.hookedonplay.decoviewlib.DecoView;
-import com.hookedonplay.decoviewlib.charts.SeriesItem;
-import com.hookedonplay.decoviewlib.events.DecoEvent;
+import com.gerwalex.counterimageview.events.DecoEvent;
 
 public class FirstFragment extends Fragment {
 
