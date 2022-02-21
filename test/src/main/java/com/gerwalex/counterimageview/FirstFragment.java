@@ -36,7 +36,7 @@ public class FirstFragment extends Fragment {
         DecoView decoView = binding.counterimage.getDecoView();
         SeriesItem seriesItem = new SeriesItem.Builder(Color.parseColor("#FFE2E2E2")).setRange(0, 50, 0).build();
         int backIndex = decoView.addSeries(seriesItem);
-        seriesItem = new SeriesItem.Builder(Color.parseColor("#FFFF8800")).setRange(0, 50, 0).build();
+        seriesItem = new SeriesItem.Builder(Color.parseColor("#FF008800")).setRange(0, 50, 0).build();
         int series1Index = decoView.addSeries(seriesItem);
         decoView.addEvent(new DecoEvent.Builder(50).setIndex(backIndex).build());
         decoView.addEvent(new DecoEvent.Builder(16.3f).setIndex(series1Index).setDelay(5000).build());

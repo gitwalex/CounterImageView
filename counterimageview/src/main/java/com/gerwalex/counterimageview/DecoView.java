@@ -93,25 +93,21 @@ public class DecoView extends View implements DecoEventManager.ArcEventManagerLi
     }
 
     public DecoView(Context context, AttributeSet attrs) {
-        this(context, attrs, com.gerwalex.counterimageview.R.style.DecoViewStyle);
+        this(context, attrs, R.style.DecoViewStyle);
     }
 
     public DecoView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        TypedArray a = context.getTheme()
-                .obtainStyledAttributes(attrs, com.gerwalex.counterimageview.R.styleable.DecoView, 0,
-                        com.gerwalex.counterimageview.R.style.DecoViewStyle);
+        TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.DecoView, 0, R.style.DecoViewStyle);
         int rotateAngle = 0;
         try {
-            mDefaultLineWidth = a.getDimension(com.gerwalex.counterimageview.R.styleable.DecoView_dv_lineWidth, 30f);
-            rotateAngle = a.getInt(com.gerwalex.counterimageview.R.styleable.DecoView_dv_rotateAngle, 0);
-            mTotalAngle = a.getInt(com.gerwalex.counterimageview.R.styleable.DecoView_dv_totalAngle, 360);
-            mVertGravity = VertGravity.values()[a
-                    .getInt(com.gerwalex.counterimageview.R.styleable.DecoView_dv_arc_gravity_vertical,
-                            VertGravity.GRAVITY_VERTICAL_CENTER.ordinal())];
-            mHorizGravity = HorizGravity.values()[a
-                    .getInt(com.gerwalex.counterimageview.R.styleable.DecoView_dv_arc_gravity_horizontal,
-                            HorizGravity.GRAVITY_HORIZONTAL_CENTER.ordinal())];
+            mDefaultLineWidth = a.getDimension(R.styleable.DecoView_dv_lineWidth, 30f);
+            rotateAngle = a.getInt(R.styleable.DecoView_dv_rotateAngle, 0);
+            mTotalAngle = a.getInt(R.styleable.DecoView_dv_totalAngle, 360);
+            mVertGravity = VertGravity.values()[a.getInt(R.styleable.DecoView_dv_arc_gravity_vertical,
+                    VertGravity.GRAVITY_VERTICAL_CENTER.ordinal())];
+            mHorizGravity = HorizGravity.values()[a.getInt(R.styleable.DecoView_dv_arc_gravity_horizontal,
+                    HorizGravity.GRAVITY_HORIZONTAL_CENTER.ordinal())];
         } finally {
             a.recycle();
         }
@@ -395,6 +391,10 @@ public class DecoView extends View implements DecoEventManager.ArcEventManagerLi
             return mChartSeries.get(index);
         }
         return null;
+    }
+
+    public float getDefaultLineWidth() {
+        return mDefaultLineWidth;
     }
 
     /**

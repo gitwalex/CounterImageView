@@ -4,7 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.widget.FrameLayout;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
@@ -14,7 +14,7 @@ import com.squareup.picasso.RequestCreator;
 
 import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 
-public class CounterImageView extends FrameLayout {
+public class CounterImageView extends ViewGroup {
     private static final int BUTTONSIZE = 96;
     private final DecoView decoView;
     private final int desiredSize;
@@ -40,9 +40,9 @@ public class CounterImageView extends FrameLayout {
             TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CounterImageView, 0,
                     R.style.CounterImageViewStyle);
             try {
-                int padding = (int) a.getDimension(R.styleable.CounterImageView_imagePadding, 0);
-                imageView.setPadding(getPaddingLeft() + padding, getPaddingTop() + padding, getPaddingRight() + padding,
-                        getPaddingBottom() + padding);
+                int padding =
+                        (int) a.getDimension(R.styleable.CounterImageView_imagePadding, decoView.getDefaultLineWidth());
+                imageView.setPadding(padding, padding, padding, padding);
                 int file = a.getResourceId(R.styleable.CounterImageView_filename, -1);
                 if (file != -1) {
                     request = Picasso.get().load(file);
@@ -80,6 +80,12 @@ public class CounterImageView extends FrameLayout {
         return decoView;
     }
 
+    private int measureDimension(int desiredSize, int measureSpec) {
+        int specMode = MeasureSpec.getMode(measureSpec);
+        int specSize = MeasureSpec.getSize(measureSpec);
+        return specMode == MeasureSpec.UNSPECIFIED ? desiredSize : specSize;
+    }
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         int size = getWidth();
@@ -89,29 +95,8 @@ public class CounterImageView extends FrameLayout {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
-        int widthSize = MeasureSpec.getSize(widthMeasureSpec) - getPaddingStart() - getPaddingEnd();
-        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
-        int heightSize = MeasureSpec.getSize(heightMeasureSpec) - getPaddingBottom() - getPaddingTop();
-        int width = desiredSize;
-        int height = desiredSize;
-        //Measure Width
-        if (widthMode == MeasureSpec.EXACTLY) {
-            //Must be this size
-            width = widthSize;
-        } else if (widthMode == MeasureSpec.AT_MOST) {
-            //Can't be bigger than...
-            width = widthSize;
-        }
-        //Measure Height
-        if (heightMode == MeasureSpec.EXACTLY) {
-            //Must be this size
-            height = heightSize;
-        } else if (heightMode == MeasureSpec.AT_MOST) {
-            //Can't be bigger than...
-            height = heightSize;
-        }
-        int size = Math.min(width, height);
+        int size = Math.min(measureDimension(desiredSize, widthMeasureSpec),
+                measureDimension(desiredSize, heightMeasureSpec));
         int childMeasureSec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
         imageView.measure(childMeasureSec, childMeasureSec);
         decoView.measure(childMeasureSec, childMeasureSec);
