@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="CounterImageView">
-        <attr name="filename" format="reference" />
         <attr name="placeholder" format="reference" />
-        <attr name="onError" format="reference" />
         <attr name="imagePadding" format="dimension" />
     </declare-styleable>
 
-    <style name="CounterImageViewStyle" parent="DecoViewStyle">
-        <item name="imagePadding">30dp</item>
-    </style>
+    <style name="CounterImageViewStyle" parent="DecoViewStyle" />
 
 
 </resources>

@@ -22,12 +22,24 @@ import androidx.annotation.NonNull;
 @SuppressWarnings("unused")
 public class GenericFunctions {
 
+    private static float mDensity;
     static private boolean mInitialized;
     static private float mScaledDensity = 3.0f;
+
+    static public float dpToPixels(final float dp) {
+        verifyInitialized();
+        return dp * mDensity;
+    }
 
     static public void initialize(@NonNull Context context) {
         mInitialized = true;
         mScaledDensity = context.getResources().getDisplayMetrics().scaledDensity;
+        mDensity = context.getResources().getDisplayMetrics().density;
+    }
+
+    static public float pixelsToDp(final float px) {
+        verifyInitialized();
+        return px / mDensity;
     }
 
     static public float pixelsToSp(final float px) {
