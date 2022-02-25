@@ -22,12 +22,6 @@ import jp.wasabeef.picasso.transformations.CropCircleTransformation;
 public class CounterImageView extends ViewGroup {
     private static final int BUTTONSIZE = 96;
 
-    static {
-        if (BuildConfig.DEBUG) {
-            Picasso.get().setLoggingEnabled(true);
-        }
-    }
-
     private final DecoView decoView;
     private final int desiredSize;
     private final ImageView imageView;
@@ -47,10 +41,12 @@ public class CounterImageView extends ViewGroup {
 
     public CounterImageView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        setWillNotDraw(false);
         imageView = new ImageView(context, attrs);
         decoView = new DecoView(context, attrs);
-        TypedArray a = getContext()
+        addView(imageView);
+        addView(decoView);
+        desiredSize = (int) (getResources().getDisplayMetrics().density * BUTTONSIZE);
+        TypedArray a = context.getTheme()
                 .obtainStyledAttributes(attrs, R.styleable.CounterImageView, 0, R.style.CounterImageViewStyle);
         try {
             int padding =
@@ -67,9 +63,6 @@ public class CounterImageView extends ViewGroup {
         } finally {
             a.recycle();
         }
-        addView(imageView);
-        addView(decoView);
-        desiredSize = (int) (getResources().getDisplayMetrics().density * BUTTONSIZE);
     }
 
     public DecoView getDecoView() {
@@ -108,14 +101,10 @@ public class CounterImageView extends ViewGroup {
     private int measureDimension(int desiredSize, int measureSpec) {
         int specMode = MeasureSpec.getMode(measureSpec);
         int specSize = MeasureSpec.getSize(measureSpec);
-        int result = desiredSize;
         if (specMode == MeasureSpec.EXACTLY) {
-            result = specSize;
+            return specSize;
         }
-        if (specMode == MeasureSpec.AT_MOST) {
-            result = specSize;
-        }
-        return result;
+        return specMode == MeasureSpec.AT_MOST ? specSize : desiredSize;
     }
 
     @Override
