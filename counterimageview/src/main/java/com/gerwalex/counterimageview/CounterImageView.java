@@ -107,23 +107,34 @@ public class CounterImageView extends ViewGroup {
         return specMode == MeasureSpec.AT_MOST ? specSize : desiredSize;
     }
 
+    /**
+     * Zentrieren der ImageView und DecoView innerhalb der ViewGroup
+     */
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        int w = r - l;
+        int h = b - t;
+        int size = Math.min(w, h);
+        int wInset = (w - size) / 2;
+        int hInset = (h - size) / 2;
+        imageView.layout(l + wInset, t + hInset, w - wInset, h - hInset);
+        decoView.layout(l + wInset, t + hInset, w - wInset, h - hInset);
+        Log.d("gerwalex", String.format("onLayout: w:%1d h:%2d, wInset %3d, hInset: %4d", w, h, wInset, hInset));
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        int size = Math.min(measureDimension(desiredSize, widthMeasureSpec),
-                measureDimension(desiredSize, heightMeasureSpec));
+        int w = measureDimension(desiredSize, widthMeasureSpec);
+        int h = measureDimension(desiredSize, heightMeasureSpec);
         //MUST CALL THIS
-        setMeasuredDimension(size, size);
+        setMeasuredDimension(w, h);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
-        imageView.layout(0, 0, w, h);
-        decoView.layout(0, 0, w, h);
+        //        imageView.layout(0, 0, w, h);
+        //        decoView.layout(0, 0, w, h);
         Log.d("gerwalex", String.format("onSizeChanged: w:%1d h:%2d", w, h));
     }
 }
